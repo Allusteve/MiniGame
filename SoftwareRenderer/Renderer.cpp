@@ -1,7 +1,15 @@
 #include "Renderer.h"
 #include <glad/glad.h>
+#include <cassert>
+#include <iostream>
 
-
+static void PerspectiveDivision(V2F& v)
+{
+	v.windowPos /= v.windowPos.w;
+	v.windowPos.w = 1.0f;
+	// OpenGL的Z-Buffer是 [0,1]，而透视除法之后Z除了深度测试已经没用了
+	v.windowPos.z = (v.windowPos.z + 1.0) * 0.5;
+}
 
 Renderer& Renderer::Get()
 {
@@ -29,9 +37,65 @@ void Renderer::DrawTriangle(const Vertex& v0, const Vertex& v1, const Vertex& v2
 	ScanLineTriangle(o1, o2, o3);
 }
 
+void Renderer::DrawMesh(const Mesh& mesh)
+{
+	assert(!mesh.IndexBuffer.empty());
+
+	for (int i = 0; i < mesh.IndexBuffer.size(); i += 3)
+	{
+		int index1 = mesh.IndexBuffer[i];
+		int index2 = mesh.IndexBuffer[i+1];
+		int index3 = mesh.IndexBuffer[i+2];
+
+
+		Vertex p1 = mesh.VertexBuffer[mesh.IndexBuffer[i]];
+		Vertex p2 = mesh.VertexBuffer[mesh.IndexBuffer[i+1]];
+		Vertex p3 = mesh.VertexBuffer[mesh.IndexBuffer[i+2]];
+
+		V2F v1 = m_Shader->VertexShader(p1);
+		V2F v2 = m_Shader->VertexShader(p2);
+		V2F v3 = m_Shader->VertexShader(p3);
+
+		//执行透视除法，变换到NDC
+		PerspectiveDivision(v1);
+		PerspectiveDivision(v2);
+		PerspectiveDivision(v3);
+
+
+		v1.windowPos = m_ViewPortMatrix * v1.windowPos;
+		v2.windowPos = m_ViewPortMatrix * v2.windowPos;
+		v3.windowPos = m_ViewPortMatrix * v3.windowPos;
+
+		
+		ScanLineTriangle(v1, v2, v3);
+	}
+
+}
+
 void Renderer::SetViewportMatrix(const glm::mat4& viewport)
 {
 	m_ViewPortMatrix = viewport;
+}
+
+void Renderer::SetModelMatrix(const glm::mat4& model)
+{
+	m_Shader->setModelMatrix(model);
+}
+
+void Renderer::SetLookAtMatrix(const glm::mat4& lookat)
+{
+	m_Shader->setViewMatrix(lookat);
+}
+
+void Renderer::SetProjectionMatrix(const glm::mat4& projection)
+{
+	m_Shader->setProjectMatrix(projection);
+}
+
+void Renderer::LoadTexture(const std::string& path)
+{
+	m_texture0 = new Texture(path);
+	m_Shader->setShaderTexture_unit0(m_texture0);
 }
 
 void Renderer::Flush()
@@ -123,6 +187,7 @@ void Renderer::DownTriangle(const V2F& v1, const V2F& v2, const V2F& v3)
 	}
 }
 
+
 void Renderer::ScanLine(const V2F& left, const V2F& right)
 {
 	int length = right.windowPos.x - left.windowPos.x;
@@ -130,7 +195,18 @@ void Renderer::ScanLine(const V2F& left, const V2F& right)
 		V2F v = V2F::lerp(left, right, (float)i / length);
 		v.windowPos.x = left.windowPos.x + i;
 		v.windowPos.y = left.windowPos.y;
-		m_FrameBuffer->WritePoint(v.windowPos.x, v.windowPos.y, m_Shader->FragmentShader(v));
+		//深度测试
+		float depth = m_FrameBuffer->GetDepth(v.windowPos.x, v.windowPos.y);
+		if (v.windowPos.z < depth) {
+
+			float z = v.Z;
+			v.worldPos /= z;
+			v.texcoord /= z;
+			v.color /= z;
+
+			m_FrameBuffer->WritePoint(v.windowPos.x, v.windowPos.y, m_Shader->FragmentShader(v));
+			m_FrameBuffer->WriteDepth(v.windowPos.x, v.windowPos.y, v.windowPos.z);
+		}
 	}
 }
 
@@ -144,3 +220,7 @@ void Renderer::ClearColorBuffer(const glm::vec4& color)
 	m_FrameBuffer->ClearColorBuffer(color);
 }
 
+void Renderer::ClearDepthBuffer()
+{
+	m_FrameBuffer->ClearDepthBuffer();
+}	

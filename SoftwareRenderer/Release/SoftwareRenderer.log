@@ -1,0 +1,107 @@
+﻿  Mesh.cpp
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Mesh.cpp(42,20): warning C4018: “<”: 有符号/无符号不匹配
+  Renderer.cpp
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(11,40): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(44,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(147,24): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(148,9): warning C4244: “初始化”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(149,11): warning C4244: “初始化”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(158,28): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(159,29): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(160,48): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(172,9): warning C4244: “初始化”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(173,11): warning C4244: “初始化”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(182,28): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(183,29): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(184,48): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(193,13): warning C4244: “初始化”: 从“T”转换到“int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(199,67): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(199,52): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(207,56): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(207,41): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(208,56): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+C:\Users\Brian\Source\Repos\SoftwareRenderer\SoftwareRenderer\Renderer.cpp(208,41): warning C4244: “参数”: 从“T”转换到“const int”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+  Shader.cpp
+  main.cpp
+  正在生成代码
+  252 of 636 functions (39.6%) were compiled, the rest were copied from previous compilation.
+    171 functions were new in current compilation
+    38 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  SoftwareRenderer.vcxproj -> C:\Users\Brian\Source\Repos\SoftwareRenderer\Release\SoftwareRenderer.exe

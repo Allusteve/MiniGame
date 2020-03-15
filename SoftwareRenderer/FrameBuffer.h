@@ -13,7 +13,7 @@ public:
 
 
 	void ClearColorBuffer(const glm::vec4& color);
-
+	void ClearDepthBuffer();
 
 	// vector下标访问在Debug状态下，会进行安全检查，效率较低
 	void WritePoint(const int& x, const int& y, const glm::vec4& color);
@@ -21,9 +21,14 @@ public:
 
 	unsigned char* data();
 
+	float GetDepth(const int x, const int y);
+
+	void WriteDepth(const int x, const int y, const float depth);
+
 
 private:
 	std::vector<unsigned char> colorBuffer;
+	std::vector<float> depthBuffer;
 	int width;
 	int height;
 };
